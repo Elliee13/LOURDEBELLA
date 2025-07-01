@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LourdeBella - Precision. Power. Brilliance.</title>
-    <link rel="stylesheet" href="Lourdebella.css">
+    <link rel="icon" type="image/jpeg" href="src/img/LourdebellaLogo.jpeg">
+    <link rel="stylesheet" href="src/styles/Lourdebella.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
@@ -14,7 +15,9 @@
         <div class="container">
             <nav class="navbar">
                 <div class="logo">
-                    <img src="LourdebellaLogo.jpeg" alt="LourdeBella Logo" id="logo">
+                    <a href="index.php">
+                        <img src="src/img/LourdebellaLogo.jpeg" alt="LourdeBella Logo" id="logo">
+                    </a>
                     <div class="logo-text">LOURDEBELLA</div>
                 </div>
                 <div class="nav-toggle" id="navToggle">
@@ -37,7 +40,7 @@
         <div class="container"> 
             <div class="hero-content">
                 <div class="logo-hero">
-                    <img src="LourdebellaLogo.jpeg" alt="LourdeBella Logo" class="hero-logo">
+                    <img src="src/img/LourdebellaLogo.jpeg" alt="LourdeBella Logo" class="hero-logo">
                 </div>
                 <div class="tagline">PRECISION. POWER. BRILLIANCE.</div>
                 <h1>A powerhouse consultancy specializing in business infrastructure, automation, and scalable systems.</h1>
@@ -69,7 +72,7 @@
                     </div>
                 </div>
                 <div class="about-image">
-                    <img src="about us.jpg" alt="About LourdeBella" class="about-img" style="width: 80%; height: auto;">
+                    <img src="src/img/about us.jpg" alt="About LourdeBella" class="about-img" style="width: 80%; height: auto;">
                 </div>
             </div>
         </div>
@@ -99,7 +102,7 @@
                     </ul>
                     <p class="custom-note">Need something custom? Let's talk. We'll meet you wherever you are in the build.</p>
                     <div class="service-actions">
-                        <button class="btn btn-glass" id="fullPackageBtn">View Full Package</button>
+                        <a href="src/php/packages.php" class="btn btn-glass">View Full Package</a>
                         <a href="https://calendly.com/lourdebella/30min" target="_blank" class="btn btn-outline">Book Your Discovery Call</a>
                     </div>
                 </div>
@@ -141,7 +144,7 @@
                 <div class="media-container" style="flex: 1; max-width: 350px;">
                     <div class="video-container">
                         <video controls poster="" class="service-video" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                            <source src="What We Do in LOURDEBELLA.mp4" type="video/mp4">
+                            <source src="src/img/What We Do in LOURDEBELLA.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     </div>
@@ -262,7 +265,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="LourdebellaLogo.jpeg" alt="LourdeBella Logo" class="footer-logo-img">
+                    <img src="src/img/LourdebellaLogo.jpeg" alt="LourdeBella Logo" class="footer-logo-img">
                 </div>
                 <div class="footer-tagline">
                     LourdeBella | Precision. Power. Brilliance.
@@ -288,6 +291,6 @@
         </div>
     </footer>
 
-    <script src="Lourdebella.js"></script>
+    <script src="src/js/Lourdebella.js"></script>
 </body>
 </html>

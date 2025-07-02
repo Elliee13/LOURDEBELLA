@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_service'])) {
     $stmt->close();
 
     // Redirect to admin page after update
-    header('Location: ../   admin.php');
+    header('Location: /LOURDEBELLA/src/admin/admin.php');
     exit();
 }
 

@@ -12,6 +12,6 @@ if (isset($_GET['id'])) {
     $stmt->close();
     $conn->close();
 
-    header('Location: admin.php'); // Redirect back to admin page
+    header('Location: /LOURDEBELLA/src/admin/admin.php'); // Redirect back to admin page
 }
 ?>

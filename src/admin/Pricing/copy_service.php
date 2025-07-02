@@ -128,7 +128,7 @@ $conn->close();
     <?php if ($success && $new_service_id): ?>
         <a href="edit_service.php?id=<?php echo $new_service_id; ?>" class="btn btn-primary">Edit Copied Service</a>
     <?php endif; ?>
-    <a href="admin.php" class="btn btn-secondary">Return to Admin Panel</a>
+    <a href="/LOURDEBELLA/src/admin/admin.php" class="btn btn-secondary">Return to Admin Panel</a>
 </div>
 
 <?php if ($success): ?>
@@ -148,7 +148,7 @@ const timer = setInterval(function() {
     
     if (countdown <= 0) {
         clearInterval(timer);
-        window.location.href = 'admin.php';
+        window.location.href = '/LOURDEBELLA/src/admin/admin.php';
     }
 }, 1000);
 </script>

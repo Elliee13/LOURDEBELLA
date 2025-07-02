@@ -19,9 +19,9 @@ if (isset($_POST['update_service'])) {
     $stmt->bind_param("sssssssi", $tier_name, $price, $description, $services, $icon, $cta_url, $cta_text, $service_id);
     
     if ($stmt->execute()) {
-        $message = "<p style='color: green;'>Service updated successfully!</p>";
+        $message = "<p class='message success'>Service updated successfully!</p>";
     } else {
-        $message = "<p style='color: red;'>Error updating service: " . $conn->error . "</p>";
+        $message = "<p class='message error'>Error updating service: " . $conn->error . "</p>";
     }
     
     $stmt->close();
@@ -56,26 +56,120 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Service</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; max-width: 800px; }
-        .form-group { margin: 15px 0; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; }
-        input, textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
-        textarea { height: 100px; resize: vertical; }
-        button { padding: 12px 20px; background-color: #007cba; color: white; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px; }
-        button:hover { background-color: #005a85; }
-        .btn-secondary { background-color: #6c757d; }
-        .btn-secondary:hover { background-color: #545b62; }
-        .back-link { display: inline-block; margin-bottom: 20px; text-decoration: none; color: #007cba; }
-        .back-link:hover { text-decoration: underline; }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
+            margin: 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+        h1 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            text-decoration: none;
+            color: #007cba;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .message {
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .message.success {
+            background-color: #e0f9e0;
+            color: #4CAF50;
+        }
+        .message.error {
+            background-color: #f9e0e0;
+            color: #f44336;
+        }
+        .form-group {
+            margin-bottom: 12px;
+        }
+        label {
+            display: block;
+            font-size: 0.95rem;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        textarea {
+            resize: vertical;
+            height: 90px;
+        }
+        input[type="url"] {
+            padding-right: 30px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-start;
+        }
+        button {
+            padding: 10px 18px;
+            font-size: 1rem;
+            background-color: #007cba;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #005a85;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+        .btn-secondary:hover {
+            background-color: #545b62;
+        }
+        @media (max-width: 600px) {
+            .form-group {
+                margin-bottom: 10px;
+            }
+            button {
+                width: 100%;
+                padding: 12px;
+                font-size: 1.1rem;
+            }
+            .btn-group {
+                flex-direction: column;
+                width: 100%;
+            }
+            .btn-group button {
+                margin-bottom: 10px;
+            }
+        }
     </style>
 </head>
 <body>
 
-<a href="../admin.php" class="back-link">← Back to Admin Panel</a>
+<a href="/LOURDEBELLA/src/admin/admin.php" class="back-link">← Back to Admin Panel</a>
 
 <h1>Edit Service</h1>
 
-<?php echo $message; ?>
+<!-- Display success or error message -->
+<?php if ($message) { ?>
+    <?php echo $message; ?>
+<?php } ?>
 
 <form method="POST" action="">
     <div class="form-group">
@@ -113,8 +207,10 @@ $conn->close();
         <input type="text" id="cta_text" name="cta_text" value="<?php echo htmlspecialchars($service['cta_text']); ?>">
     </div>
 
-    <button type="submit" name="update_service">Update Service</button>
-    <button type="button" class="btn-secondary" onclick="window.location.href='admin.php'">Cancel</button>
+    <div class="btn-group">
+        <button type="submit" name="update_service">Update Service</button>
+        <button type="button" class="btn-secondary" onclick="window.location.href='/LOURDEBELLA/src/admin/admin.php'">Cancel</button>
+    </div>
 </form>
 
 </body>

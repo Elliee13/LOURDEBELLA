@@ -100,7 +100,7 @@ $conn->close();
     <?php echo htmlspecialchars($message); ?>
 </div>
 
-<a href="admin.php" class="btn">Return to Admin Panel</a>
+<a href="/LOURDEBELLA/src/admin/admin.php" class="btn">Return to Admin Panel</a>
 
 <div class="countdown">
     <p>You will be automatically redirected to the admin panel in <span id="countdown">5</span> seconds.</p>
@@ -117,7 +117,7 @@ const timer = setInterval(function() {
     
     if (countdown <= 0) {
         clearInterval(timer);
-        window.location.href = 'admin.php';
+        window.location.href = '/LOURDEBELLA/src/admin/admin.php';
     }
 }, 1000);
 </script>

@@ -32,9 +32,16 @@ $conn->close();
 <body>
 
 <div class="container">
+    <!-- Header -->
     <div class="header">
         <h1>Admin Panel</h1>
+        <form action="../.././login.php" method="POST">
+            <button type="submit" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </form>
     </div>
+
 
     <!-- Navigation Tabs -->
     <div class="nav-tabs">
@@ -210,6 +217,56 @@ function showSection(sectionId, tabElement) {
     // Add active class to clicked tab
     tabElement.classList.add('active');
 }
+
+// Scroll to top functionality
+    let scrollTopBtn = document.createElement('button');
+    scrollTopBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
+    scrollTopBtn.className = 'scroll-top-btn';
+    scrollTopBtn.style.cssText = `
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--navy);
+        border: gold;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+        opacity: 50%;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+    `;
+    
+    document.body.appendChild(scrollTopBtn);
+    
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 500) {
+            scrollTopBtn.style.opacity = '1';
+            scrollTopBtn.style.visibility = 'visible';} else {
+           scrollTopBtn.style.opacity = '0';
+           scrollTopBtn.style.visibility = 'hidden';
+       }
+   });
+   
+   scrollTopBtn.addEventListener('click', function() {
+       window.scrollTo({
+           top: 0,
+           behavior: 'smooth'
+       });
+   });
+   
+   scrollTopBtn.addEventListener('mouseenter', function() {
+       this.style.transform = 'scale(1.1)';
+   });
+   
+   scrollTopBtn.addEventListener('mouseleave', function() {
+       this.style.transform = 'scale(1)';
+   });
 </script>
 
 </body>

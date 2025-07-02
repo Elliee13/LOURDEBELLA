@@ -1,6 +1,7 @@
 <?php
-// Include database connection
-require ('../../db.php'); 
+// Absolute path to db.php
+require ($_SERVER['DOCUMENT_ROOT'] . '/LOURDEBELLA/src/admin/db.php');
+
 
 // Fetch the current contact information from the database
 function get_contact_info() {

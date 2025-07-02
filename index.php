@@ -1,3 +1,8 @@
+<?php
+// Include the contact info logic
+include('src/php/contact_info.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -211,7 +216,7 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+<!-- Contact Section -->
     <section id="contact" class="contact section">
         <div class="container">
             <div class="section-header">
@@ -223,20 +228,20 @@
                     <div class="info-item">
                         <i class="fas fa-envelope"></i>
                         <h3>Email</h3>
-                        <p><a href="mailto:contact@LourdeBella.com">contact@LourdeBella.com</a></p>
+                        <p><a href="mailto:<?php echo htmlspecialchars($contact_info['email']); ?>"><?php echo htmlspecialchars($contact_info['email']); ?></a></p>
                     </div>
                     <div class="info-item">
                         <i class="fas fa-phone"></i>
                         <h3>Phone</h3>
-                        <p><a href="tel:4044622993">404-462-2993</a></p>
+                        <p><a href="tel:<?php echo htmlspecialchars($contact_info['phone']); ?>"><?php echo htmlspecialchars($contact_info['phone']); ?></a></p>
                     </div>
                     <div class="info-item">
                         <i class="fas fa-map-marker-alt"></i>
                         <h3>Mailing Address</h3>
-                        <p>2959 Chapel Hill Road, Suite D-1097<br>Douglasville, GA 30134</p>
+                        <p><?php echo nl2br(htmlspecialchars($contact_info['address'])); ?></p>
                     </div>
                     <div class="info-cta">
-                        <a href="https://calendly.com/lourdebella/30min" target="_blank" class="btn btn-primary">Book Your Discovery Call</a>
+                        <a href="<?php echo htmlspecialchars($contact_info['cta_url']); ?>" target="_blank" class="btn btn-primary"><?php echo htmlspecialchars($contact_info['cta_text']); ?></a>
                     </div>
                 </div>
                 <div class="contact-form">
@@ -292,5 +297,23 @@
     </footer>
 
     <script src="src/js/Lourdebella.js"></script>
+    <script>
+    // Fetch contact information dynamically
+    fetch('src/php/contact_info.php')
+        .then(response => response.json())
+        .then(data => {
+            // Update the HTML elements with the fetched contact information
+            document.getElementById('contact-email').innerHTML = `<a href="mailto:${data.email}">${data.email}</a>`;
+            document.getElementById('contact-phone').innerHTML = `<a href="tel:${data.phone}">${data.phone}</a>`;
+            document.getElementById('contact-address').innerHTML = data.address.replace(/\n/g, "<br>");
+        })
+        .catch(error => {
+            console.error('Error fetching contact info:', error);
+            // Handle errors (e.g., show a fallback message)
+            document.getElementById('contact-email').innerText = 'Error loading email';
+            document.getElementById('contact-phone').innerText = 'Error loading phone';
+            document.getElementById('contact-address').innerText = 'Error loading address';
+        });
+    </script>
 </body>
 </html>

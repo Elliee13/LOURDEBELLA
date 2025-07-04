@@ -1,6 +1,19 @@
 <?php
 // Include the contact info logic
 include('src/php/contact_info.php');
+include ('src/php/our_services.php');
+?>
+
+<?php
+// Include database connection
+require ('db.php'); 
+
+// Fetch services from the database
+$sql_services = "SELECT * FROM our_services";
+$result_services = $conn->query($sql_services);
+
+// Close the database connection after fetching the data
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -89,31 +102,40 @@ include('src/php/contact_info.php');
             <div class="section-header">
                 <h2>Our Services</h2>
             </div>
-            <div class="service-box">
-                <h3>Business Structure Setup Package</h3>
-                <div class="service-content">
-                    <p>We offer a done-for-you foundational setup that includes:</p>
-                    <ul class="service-list">
-                        <li>LLC + EIN Setup (or compliance upgrade if you already have them)</li>
-                        <li>Bank account prep and digital filing system</li>
-                        <li>Custom logo, color palette, and brand dashboard</li>
-                        <li>SOPs (Standard Operating Procedures) development</li>
-                        <li>Custom systems templates and workflows</li>
-                        <li>CRM setup and integration</li>
-                        <li>Project coordination and management systems</li>
-                        <li>Email automations and customer journey mapping</li>
-                        <li>Sales page layout and optimization</li>
-                        <li>30-day implementation support</li>
-                    </ul>
-                    <p class="custom-note">Need something custom? Let's talk. We'll meet you wherever you are in the build.</p>
-                    <div class="service-actions">
-                        <a href="src/php/packages.php" class="btn btn-glass">View Full Package</a>
-                        <a href="https://calendly.com/lourdebella/30min" target="_blank" class="btn btn-outline">Book Your Discovery Call</a>
+
+            <?php while ($row = $result_services->fetch_assoc()) { ?>
+                <div class="service-box">
+                    <h3><?php echo htmlspecialchars($row['service_name']); ?></h3>
+                    <div class="service-content">
+                        <p><?php echo htmlspecialchars($row['description']); ?></p>
+
+                        <?php 
+                        // Decode the service list (if stored as JSON in the database)
+                        $service_list = json_decode($row['service_list'], true);
+
+                        if ($service_list && is_array($service_list)) { // Ensure the decoded list is an array
+                        ?>
+                            <ul class="service-list">
+                                <?php foreach ($service_list as $service_item) { ?>
+                                    <li><?php echo htmlspecialchars($service_item); ?></li>
+                                <?php } ?>
+                            </ul>
+                        <?php } else { ?>
+                            <p>No services listed or invalid JSON format in service_list.</p>
+                        <?php } ?>
+
+                        <p class="custom-note"><?php echo htmlspecialchars($row['custom_note']); ?></p>
+
+                        <div class="service-actions">
+                            <a href="<?php echo htmlspecialchars($row['view_package_link']); ?>" class="btn btn-glass">View Full Package</a>
+                            <a href="<?php echo htmlspecialchars($row['book_call_link']); ?>" target="_blank" class="btn btn-outline">Book Your Discovery Call</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <?php } ?>
         </div>
     </section>
+
 
     <!-- What We Do Section -->
     <section id="what-we-do" class="what-we-do section">

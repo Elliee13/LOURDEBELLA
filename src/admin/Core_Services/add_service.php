@@ -1,6 +1,6 @@
 <?php
 // Include database connection
-require ('db.php'); 
+require ($_SERVER['DOCUMENT_ROOT'] . '/LOURDEBELLA/db.php');
 
 // Insert the new service if the form is submitted via POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_service'])) {

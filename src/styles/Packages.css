@@ -335,8 +335,6 @@ header {
     color: rgba(255, 255, 255, 0.9);
     font-size: 1rem;
     font-style: italic;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
 }
 
 .service-list {
@@ -355,6 +353,7 @@ header {
     color: rgba(255, 255, 255, 0.9);
     font-weight: 500;
     line-height: 1.6;
+    margin-top: -10px;
 }
 
 .service-list li::before {
@@ -407,7 +406,7 @@ header {
 /* Targeting the third service box using nth-child */
 .service-box:nth-child(2) {
     border: 2px solid #f5a80b; /* Custom border color */
-    height: 500px; /* Adjust the height as needed */
+    height: auto; /* Adjust the height as needed */
     padding-bottom: 20px; /* Adjust padding for better spacing */
 }
 

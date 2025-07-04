@@ -245,3 +245,70 @@ tr:hover {
         padding: 1rem;
     }
 }
+
+.update-button {
+    margin: 5px 5px 5px 5px;
+    background-color: var(--navy);
+    color: var(--white);
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.update-button:hover {
+    background-color: var(--secondary);
+    color: var(--white);
+}
+
+.delete-button {
+    margin: 5px 5px 5px 5px;
+    background-color: rgba(226, 9, 9, 0.774);
+    color: var(--white);
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.delete-button:hover {
+    background-color: rgb(255, 47, 47);
+    color: var(--white);
+}
+
+.update-button-add {
+    display: flex;
+    margin: 5px 5px 5px 5px;
+    background-color: var(--navy);
+    color: var(--white);
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.update-button-add:hover {
+    background-color: var(--secondary);
+    color: var(--white);
+}
+
+.delete-button-add {
+    width: 100%;
+    margin: 5px 5px 5px 5px;
+    background-color: rgba(226, 9, 9, 0.774);
+    color: var(--white);
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.delete-button-add:hover {
+    background-color: rgb(255, 47, 47);
+    color: var(--white);
+}

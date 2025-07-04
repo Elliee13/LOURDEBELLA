@@ -1,10 +1,15 @@
 <?php
 require ('../../db.php'); // Include database connection
 include 'Core_Services/add_service.php';
+include 'Our_services/add_services.php';
+
 
 // Fetch all services from the services table
 $sql_services = "SELECT * FROM services";
 $result_services = $conn->query($sql_services);
+
+$sql_our_services = "SELECT * FROM our_services";
+$result_our_services = $conn->query($sql_our_services);
 
 // Fetch all core services
 $sql_core_services = "SELECT * FROM core_services";
@@ -27,7 +32,14 @@ $conn->close();
     <link rel="stylesheet" href="admin.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap JS (must come after jQuery) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 
@@ -42,7 +54,6 @@ $conn->close();
         </form>
     </div>
 
-
     <!-- Navigation Tabs -->
     <div class="nav-tabs">
         <a href="#services" class="nav-tab active" onclick="showSection('services', this)">
@@ -56,11 +67,11 @@ $conn->close();
         </a>
     </div>
 
-    <!-- Services Section -->
+    <!-- Our Services Section -->
     <div id="services" class="section-content active">
         <div class="card">
             <div class="card-header">
-                <h2>Manage Services</h2>
+                <h2>Our Services</h2>
             </div>
             <div class="card-body">
                 <div class="table-container">
@@ -68,31 +79,27 @@ $conn->close();
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Tier</th>
-                                <th>Price</th>
+                                <th>Service Name</th>
                                 <th>Description</th>
-                                <th>Services</th>
-                                <th>Icon</th>
-                                <th>CTA URL</th>
-                                <th>CTA Text</th>
+                                <th>Service List</th>
+                                <th>Custom Note</th>
+                                <th>Book Call Link</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php while ($row = $result_services->fetch_assoc()) { ?>
+                            <?php while ($row = $result_our_services->fetch_assoc()) { ?>
                                 <tr>
                                     <td><?php echo htmlspecialchars($row['id']); ?></td>
-                                    <td><strong><?php echo htmlspecialchars($row['tier_name']); ?></strong></td>
-                                    <td><?php echo htmlspecialchars($row['price']); ?></td>
-                                    <td><span class="truncate"><?php echo htmlspecialchars($row['description']); ?></span></td>
-                                    <td><span class="truncate"><?php echo htmlspecialchars($row['services']); ?></span></td>
-                                    <td><?php echo htmlspecialchars($row['icon']); ?></td>
-                                    <td><span class="truncate"><?php echo htmlspecialchars($row['cta_url']); ?></span></td>
-                                    <td><?php echo htmlspecialchars($row['cta_text']); ?></td>
+                                    <td><?php echo htmlspecialchars($row['service_name']); ?></td>
+                                    <td><?php echo htmlspecialchars($row['description']); ?></td>
+                                    <td><?php echo htmlspecialchars($row['service_list']); ?></td>
+                                    <td><?php echo htmlspecialchars($row['custom_note']); ?></td>
+                                    <td><a href="<?php echo htmlspecialchars($row['book_call_link']); ?>" target="_blank">Book Your Discovery Call</a></td>
                                     <td class="actions">
-                                        <a href="Pricing/edit_service_2.php?id=<?php echo $row['id']; ?>" class="action-link edit">Edit</a>
-                                        <a href="Pricing/delete_service_2.php?id=<?php echo $row['id']; ?>" class="action-link delete" onclick="return confirm('Are you sure you want to delete this service?')">Delete</a>
-                                        <a href="Pricing/copy_service.php?id=<?php echo $row['id']; ?>" class="action-link copy">Copy</a>
+                                        <!-- Triggering Update and Delete Modals -->
+                                        <a href="Our_services/update_services.php?id=<?php echo $row['id']; ?>" class="update-button-add edit">Update</a>
+                                        <a href="Our_services/delete_services.php?id=<?php echo $row['id']; ?>" class="delete-button-add delete" onclick="return confirm('Are you sure you want to delete this service?')">Delete</a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -100,41 +107,62 @@ $conn->close();
                     </table>
                 </div>
                 <div class="add-service-btn-container">
-                    <a href="Core_Services/add_service.php" class="btn btn-primary">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addServiceModal">
                         <i class="fas fa-plus"></i> Add New Service
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Core Services Section -->
-    <div id="core-services" class="section-content">
-        <div class="card">
-            <div class="card-header">
-                <h2>Add New Core Service</h2>
-            </div>
-            <div class="card-body">
-                <!-- Add New Core Service Form -->
-                <form method="POST" action="admin.php">
-                    <div class="form-group">
-                        <label for="service_name" class="form-label">Service Name</label>
-                        <input type="text" id="service_name" name="service_name" class="form-input" required>
+        <!-- Add New Service Modal -->
+        <div class="modal fade" id="addServiceModal" tabindex="-1" aria-labelledby="addServiceModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addServiceModalLabel">Add New Service</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <button type="submit" name="add_service" class="btn btn-primary">
-                        <i class="fas fa-plus"></i> Add Service
-                    </button>
-                </form>
+                    <div class="modal-body">
+                        <!-- Add New Service Form -->
+                        <form method="POST" action="Our_services/add_services.php">
+                            <div class="form-group">
+                                <!-- Correct usage of label and input -->
+                                <label for="service_name">Service Name</label>
+                                <input type="text" id="service_name" name="service_name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea id="description" name="description" class="form-control" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="service_list">Service List (Comma Separated)</label>
+                                <input type="text" id="service_list" name="service_list" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="custom_note">Custom Note</label>
+                                <input type="text" id="custom_note" name="custom_note" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="book_call_link">Book Call Link</label>
+                                <input type="url" id="book_call_link" name="book_call_link" class="form-control" required>
+                            </div>
+                            <button type="submit" name="add_service" class="btn btn-primary">Add Service</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
 
+    <!-- Core Services Section -->
+    <div id="core-services" class="section-content">
         <div class="card">
             <div class="card-header">
                 <h2>Manage Core Services</h2>
             </div>
             <div class="card-body">
                 <div class="table-container">
-                    <table>
+                    <table class="services-table">
                         <thead>
                             <tr>
                                 <th>Service Name</th>
@@ -146,8 +174,8 @@ $conn->close();
                                 <tr>
                                     <td><strong><?php echo htmlspecialchars($row['service_name']); ?></strong></td>
                                     <td>
-                                        <a href="Core_Services/edit_service.php?id=<?php echo $row['id']; ?>" class="action-link edit">Edit</a>
-                                        <a href="Core_Services/delete_service.php?id=<?php echo $row['id']; ?>" class="action-link delete" onclick="return confirm('Are you sure?')">Delete</a>
+                                        <a href="Core_Services/edit_service.php?id=<?php echo $row['id']; ?>" class="update-button edit">Update</a>
+                                        <a href="Core_Services/delete_service.php?id=<?php echo $row['id']; ?>" class="delete-button delete" onclick="return confirm('Are you sure you want to delete this service?')">Delete</a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -157,7 +185,6 @@ $conn->close();
             </div>
         </div>
     </div>
-
 
     <!-- Contact Information Section -->
     <div id="contact" class="section-content">
@@ -171,27 +198,22 @@ $conn->close();
                         <label for="email" class="form-label">Email</label>
                         <input type="email" id="email" name="email" class="form-input" value="<?php echo htmlspecialchars($contact_info['email']); ?>" required>
                     </div>
-                    
                     <div class="form-group">
                         <label for="phone" class="form-label">Phone</label>
                         <input type="text" id="phone" name="phone" class="form-input" value="<?php echo htmlspecialchars($contact_info['phone']); ?>" required>
                     </div>
-                    
                     <div class="form-group">
                         <label for="address" class="form-label">Mailing Address</label>
                         <textarea id="address" name="address" class="form-input form-textarea" required><?php echo htmlspecialchars($contact_info['address']); ?></textarea>
                     </div>
-                    
                     <div class="form-group">
                         <label for="cta_url" class="form-label">CTA URL</label>
                         <input type="url" id="cta_url" name="cta_url" class="form-input" value="<?php echo htmlspecialchars($contact_info['cta_url']); ?>" required>
                     </div>
-                    
                     <div class="form-group">
                         <label for="cta_text" class="form-label">CTA Text</label>
                         <input type="text" id="cta_text" name="cta_text" class="form-input" value="<?php echo htmlspecialchars($contact_info['cta_text']); ?>" required>
                     </div>
-                    
                     <button type="submit" name="update_contact" class="btn btn-primary">
                         <i class="fas fa-save"></i> Update Contact Information
                     </button>
@@ -218,7 +240,9 @@ function showSection(sectionId, tabElement) {
     tabElement.classList.add('active');
 }
 
-// Scroll to top functionality
+</script>
+<script>
+    // Scroll to top functionality
     let scrollTopBtn = document.createElement('button');
     scrollTopBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
     scrollTopBtn.className = 'scroll-top-btn';
@@ -229,14 +253,14 @@ function showSection(sectionId, tabElement) {
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        background: var(--navy);
-        border: gold;
+        background: #0F172A;
+        border: none;
         color: white;
         font-size: 18px;
         cursor: pointer;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+        box-shadow: 0 10px 30px #F59E0B;
         z-index: 1000;
-        opacity: 50%;
+        opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
         backdrop-filter: blur(10px);
@@ -267,6 +291,18 @@ function showSection(sectionId, tabElement) {
    scrollTopBtn.addEventListener('mouseleave', function() {
        this.style.transform = 'scale(1)';
    });
+   
+   // Loading animation
+   window.addEventListener('load', function() {
+       const loader = document.querySelector('.loader');
+       if (loader) {
+           loader.style.opacity = '0';
+           setTimeout(() => {
+               loader.style.display = 'none';
+           }, 500);
+       }
+   });
+
 </script>
 
 </body>

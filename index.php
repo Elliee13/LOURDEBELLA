@@ -33,7 +33,7 @@ $conn->close();
         <div class="container">
             <nav class="navbar">
                 <div class="logo">
-                    <a href="index.php">
+                    <a href="login.php">
                         <img src="src/img/LourdebellaLogo.jpeg" alt="LourdeBella Logo" id="logo">
                     </a>
                     <div class="logo-text">LOURDEBELLA</div>
@@ -90,7 +90,7 @@ $conn->close();
                     </div>
                 </div>
                 <div class="about-image">
-                    <img src="src/img/about us.jpg" alt="About LourdeBella" class="about-img" style="width: 80%; height: auto;">
+                    <img src="src/img/about us.jpg" alt="About LourdeBella" class="about-img">
                 </div>
             </div>
         </div>
@@ -168,9 +168,9 @@ $conn->close();
                 </div>
                 
                 <!-- Video Container -->
-                <div class="media-container" style="flex: 1; max-width: 350px;">
+                <div class="media-container">
                     <div class="video-container">
-                        <video controls poster="" class="service-video" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        <video controls poster="" class="service-video">
                             <source src="src/img/What We Do in LOURDEBELLA.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>

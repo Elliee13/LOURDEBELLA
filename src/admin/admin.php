@@ -75,7 +75,7 @@ $conn->close();
             </div>
             <div class="card-body">
                 <!-- Add New Service Button -->
-                <button type="button" class="btn btn-primary" onclick="showAddServiceForm()">Add New Service</button>
+                <button type="button" class="btn btn-primary" onclick="showAddCoreServiceForm()">Add New Service</button>
 
                 <!-- Add Service Form (Initially Hidden) -->
                 <div id="add-service-form-our-services" style="display: none; margin-top: 20px;">
@@ -102,7 +102,7 @@ $conn->close();
                         </div>
                         <div class="form-actions">
                             <button type="submit" name="add_service" class="btn btn-primary">Add Service</button>
-                            <button type="button" class="btn btn-secondary" onclick="hideAddServiceForm()">Cancel</button>
+                            <button type="button" class="btn btn-secondary" onclick="hideAddCoreServiceForm()">Cancel</button>
                         </div>
                     </form>
                 </div>
@@ -358,22 +358,20 @@ function showSection(sectionId, tabElement) {
     // Show the Add Service form
     function showAddServiceForm() {
         document.getElementById("add-service-form").style.display = "block";
-        document.getElementById("add-service-form-our-services").style.display = "block";
     }
 
     // Hide the Add Service form
     function hideAddServiceForm() {
         document.getElementById("add-service-form").style.display = "none";
-        document.getElementById("add-service-form-our-services").style.display = "none";
     }
 
         // Show the Add Service form
-    function showAddServiceForm() {
+    function showAddCoreServiceForm() {
         document.getElementById("add-service-form-our-services").style.display = "block";
     }
 
     // Hide the Add Service form
-    function hideAddServiceForm() {
+    function hideAddCoreServiceForm() {
         document.getElementById("add-service-form-our-services").style.display = "none";
     }
 

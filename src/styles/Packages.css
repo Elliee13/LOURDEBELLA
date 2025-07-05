@@ -442,28 +442,6 @@ header {
     color: #ffffff;
 }
 
-/* Right: Why Lourdebella */
-.why-lourdebella {
-    flex: 1;
-    text-align: left;
-    color: #ffffff;
-}
-
-/* Title for Why Lourdebella */
-.why-lourdebella h2 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-    color: #ffffff; 
-}
-
-/* Paragraphs for Why Lourdebella */
-.why-lourdebella p {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 15px;
-}
-
 /* Service Items */
 .service-item {
     display: flex;

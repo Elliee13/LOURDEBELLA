@@ -88,8 +88,6 @@ include('contact_info.php');
 /* Package Services Styling */
 .package-service-box {
     background:rgba(26, 26, 26, 0);
-    padding: 30px;
-    margin: 20px 0;
     color: #fff;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -119,29 +117,22 @@ include('contact_info.php');
     font-style: italic;
 }
 
-.package-content {
-    margin-top: 20px;
-}
 
 .package-description {
     font-size: 16px;
     line-height: 1.6;
     color: #e0e0e0;
-    margin-bottom: 25px;
     text-align: center;
 }
 
 .package-includes {
     background: rgba(245, 159, 11, 0);
-    border-radius: 8px;
-    padding: 20px;
 }
 
 .package-includes h4 {
     color: #F59E0B;
     font-size: 20px;
     font-weight: 600;
-    margin: 0 0 15px 0;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -193,10 +184,7 @@ include('contact_info.php');
     .package-description {
         font-size: 14px;
     }
-    
-    .package-includes {
-        padding: 15px;
-    }
+
 }
 
 /* Add-on Services Styling - Package Design */

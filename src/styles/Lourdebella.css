@@ -346,46 +346,49 @@ header {
 
 /* About Section */
 .about {
-    background: linear-gradient(135deg, var(--light-cream) 0%, var(--cream) 100%);
+    background-color: var(--cream);
+    background-position: center; /* Centers the image */
     position: relative;
-}
-
-.about::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23F59E0B" opacity="0.05"/><circle cx="75" cy="75" r="1" fill="%23059669" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-    opacity: 0.3;
+    padding: 80px 0;
+    color: var(--navy); /* Optional: Sets the text color to white for better contrast */
 }
 
 .about-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
+    gap: 60px;
+    align-items: center; /* Center align for better balance */
     position: relative;
     z-index: 2;
 }
 
 .about-text {
     animation: slideInLeft 1.2s ease-out;
+    padding-right: 20px; /* Add some spacing from the image */
 }
 
-.about-image {
-    animation: slideInRight 1.2s ease-out;
+.about-text .lead {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    color: var(--text-dark);
 }
 
-@keyframes slideInLeft {
-    from { opacity: 0; transform: translateX(-50px); }
-    to { opacity: 1; transform: translateX(0); }
+.about-text h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--navy);
 }
 
-@keyframes slideInRight {
-    from { opacity: 0; transform: translateX(50px); }
-    to { opacity: 1; transform: translateX(0); }
+.about-text p {
+    line-height: 1.7;
+    margin-bottom: 20px;
+    color: var(--text-dark);
+}
+
+.mission, .founder {
+    margin-bottom: 40px;
 }
 
 .mission-statement {
@@ -399,25 +402,63 @@ header {
     line-height: 1.1;
 }
 
-.image-placeholder {
-    width: 100%;
-    height: 500px;
-    background: var(--gradient-hero);
-    border-radius: 20px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: var(--shadow-primary);
+.about-image {
+    animation: slideInRight 1.2s ease-out;
+    display: flex;
+    align-items: center;
 }
 
-.image-placeholder::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(245, 158, 11, 0.3), rgba(124, 58, 237, 0.3));
+.about-img {
+    width: 220%; /* Set to 100% to fit the container */
+    height: 250%; /* Maintain aspect ratio */
+    display: flex; /* Ensure it behaves like a block element */
+    margin: 0 auto; /* Center the video */
 }
+
+.about-img:hover {
+    transform: scale(1.02);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .about-text {
+        padding-right: 0;
+    }
+    
+    .mission-statement {
+        font-size: 1.8rem;
+    }
+    
+    .about-img {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .about {
+        padding: 60px 0;
+    }
+    
+    .about-content {
+        gap: 30px;
+    }
+    
+    .mission-statement {
+        font-size: 1.5rem;
+    }
+    
+    .about-text h3 {
+        font-size: 1.5rem;
+    }
+}
+
+
 
 /* Services Section */
 .services {
@@ -598,6 +639,13 @@ header {
     margin-bottom: 25px;
     color: var(--navy);
     font-style: italic;
+}
+
+.service-video {
+    width: 100%; /* Set to 100% to fit the container */
+    height: auto; /* Maintain aspect ratio */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin: 0 auto; /* Center the video */
 }
 
 

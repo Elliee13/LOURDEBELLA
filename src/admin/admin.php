@@ -74,7 +74,41 @@ $conn->close();
                 <h2>Our Services</h2>
             </div>
             <div class="card-body">
-                <div class="table-container">
+                <!-- Add New Service Button -->
+                <button type="button" class="btn btn-primary" onclick="showAddServiceForm()">Add New Service</button>
+
+                <!-- Add Service Form (Initially Hidden) -->
+                <div id="add-service-form-our-services" style="display: none; margin-top: 20px;">
+                    <form method="POST" action="Our_services/add_services.php">
+                        <div class="form-group">
+                            <label for="service_name">Service Name</label>
+                            <input type="text" id="service_name" name="service_name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" name="description" class="form-input" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="service_list">Service List (comma-separated)</label>
+                            <input type="text" id="service_list" name="service_list" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="custom_note">Custom Note</label>
+                            <textarea id="custom_note" name="custom_note" class="form-input" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="book_call_link">Book Call Link</label>
+                            <input type="text" id="book_call_link" name="book_call_link" class="form-input" required>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" name="add_service" class="btn btn-primary">Add Service</button>
+                            <button type="button" class="btn btn-secondary" onclick="hideAddServiceForm()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Table of Services -->
+                <div class="table-container" style="margin-top: 20px;">
                     <table class="services-table">
                         <thead>
                             <tr>
@@ -97,7 +131,6 @@ $conn->close();
                                     <td><?php echo htmlspecialchars($row['custom_note']); ?></td>
                                     <td><a href="<?php echo htmlspecialchars($row['book_call_link']); ?>" target="_blank">Book Your Discovery Call</a></td>
                                     <td class="actions">
-                                        <!-- Triggering Update and Delete Modals -->
                                         <a href="Our_services/update_services.php?id=<?php echo $row['id']; ?>" class="update-button-add edit">Update</a>
                                         <a href="Our_services/delete_services.php?id=<?php echo $row['id']; ?>" class="delete-button-add delete" onclick="return confirm('Are you sure you want to delete this service?')">Delete</a>
                                     </td>
@@ -106,14 +139,10 @@ $conn->close();
                         </tbody>
                     </table>
                 </div>
-                <div class="add-service-btn-container">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addServiceModal">
-                        <i class="fas fa-plus"></i> Add New Service
-                    </button>
-                </div>
             </div>
         </div>
     </div>
+
 
         <!-- Add New Service Modal -->
         <div class="modal fade" id="addServiceModal" tabindex="-1" aria-labelledby="addServiceModalLabel" aria-hidden="true">
@@ -161,7 +190,27 @@ $conn->close();
                 <h2>Manage Core Services</h2>
             </div>
             <div class="card-body">
-                <div class="table-container">
+                <!-- Add Service Button -->
+                <button type="button" class="btn btn-primary" onclick="showAddServiceForm()">Add New Core Service</button>
+
+                <!-- Add Service Form (Initially Hidden) -->
+                <div id="add-service-form" style="display: none; margin-top: 20px;">
+                    <form method="POST" action="Core_Services/add_service.php">
+                        <div class="form-group">
+                            <label for="service_name">Service Name</label>
+                            <input type="text" id="service_name" name="service_name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="note_description">Service Description</label>
+                            <textarea id="note_description" name="note_description" class="form-input" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" name="add_service" class="btn btn-primary">Add Service</button>
+                        <button type="button" class="btn btn-secondary" onclick="hideAddServiceForm()">Cancel</button>
+                    </form>
+                </div>
+
+                <!-- Table of Services -->
+                <div class="table-container" style="margin-top: 20px;">
                     <table class="services-table">
                         <thead>
                             <tr>
@@ -304,6 +353,33 @@ function showSection(sectionId, tabElement) {
    });
 
 </script>
+
+<script>
+    // Show the Add Service form
+    function showAddServiceForm() {
+        document.getElementById("add-service-form").style.display = "block";
+        document.getElementById("add-service-form-our-services").style.display = "block";
+    }
+
+    // Hide the Add Service form
+    function hideAddServiceForm() {
+        document.getElementById("add-service-form").style.display = "none";
+        document.getElementById("add-service-form-our-services").style.display = "none";
+    }
+
+        // Show the Add Service form
+    function showAddServiceForm() {
+        document.getElementById("add-service-form-our-services").style.display = "block";
+    }
+
+    // Hide the Add Service form
+    function hideAddServiceForm() {
+        document.getElementById("add-service-form-our-services").style.display = "none";
+    }
+
+
+</script>
+
 
 </body>
 </html>

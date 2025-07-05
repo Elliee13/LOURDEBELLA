@@ -8,13 +8,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_service'])) {
     
     // Check if service_list is provided and process it as a comma-separated string
     if (isset($_POST['service_list']) && !empty($_POST['service_list'])) {
-        // Make sure the input is a string
         $service_list = $_POST['service_list'];
-        // Convert the comma-separated string into an array
         $service_list_array = explode(",", $service_list);
-        // Trim each item to remove extra spaces
         $service_list_array = array_map('trim', $service_list_array);
-        // Encode as JSON
         $service_list = json_encode($service_list_array);
     } else {
         $service_list = json_encode([]); // Default to an empty array if no services are provided

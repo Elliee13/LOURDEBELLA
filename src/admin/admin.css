@@ -161,6 +161,7 @@ tr:hover {
 
 /* Button Styling */
 .btn {
+    background-color: var(--navy);
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -312,3 +313,35 @@ tr:hover {
     background-color: rgb(255, 47, 47);
     color: var(--white);
 }
+
+/* Basic Styling for Form */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 8px 15px;
+    font-size: 14px;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+

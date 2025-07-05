@@ -85,63 +85,75 @@ include('contact_info.php');
     border-top: 1px solid #eee;
 }
 
-/* Package Services Styling */
+/* Package Services Styling - Space Optimized */
 .package-service-box {
-    background:rgba(26, 26, 26, 0);
-    padding: 30px;
-    margin: 20px 0;
+    background: rgba(26, 26, 26, 0);
+    margin: 15px 0;
     color: #fff;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    align-items: start;
 }
 
 .package-header {
-    text-align: center;
-    margin-bottom: 25px;
+    grid-column: 1 / -1;
+    text-align: left;
+    margin-bottom: 15px;
     border-bottom: 2px solid #F59E0B;
-    padding-bottom: 20px;
+    padding-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
 }
 
 .package-title {
-    color:rgb(247, 239, 239);
-    font-size: 35px;
+    color: rgb(247, 239, 239);
+    font-size: 28px;
     font-weight: 700;
-    margin: 0 0 10px 0;
+    margin: 0;
     text-transform: uppercase;
     letter-spacing: 1px;
+    flex: 1;
 }
 
 .package-subtitle {
     color: #F59E0B;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     margin: 0;
     opacity: 0.8;
     font-style: italic;
+    flex-shrink: 0;
 }
 
 .package-content {
-    margin-top: 20px;
+    display: contents;
 }
 
 .package-description {
-    font-size: 16px;
-    line-height: 1.6;
+    text-align: left;
+    font-size: 15px;
+    line-height: 1.5;
     color: #e0e0e0;
-    margin-bottom: 25px;
-    text-align: center;
+    margin: 0;
+    padding-right: 15px;
 }
 
 .package-includes {
-    background: rgba(245, 159, 11, 0);
+    background: rgba(245, 159, 11, 0.03);
     border-radius: 8px;
-    padding: 20px;
+    padding: 15px;
+    border-left: 3px solid #F59E0B;
 }
 
 .package-includes h4 {
     color: #F59E0B;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 600;
-    margin: 0 0 15px 0;
+    margin: 0 0 10px 0;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -150,16 +162,19 @@ include('contact_info.php');
     list-style: none;
     padding: 0;
     margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 8px;
 }
 
 .package-services-list li {
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: left;
+    padding: 6px 0 6px 20px;
     position: relative;
-    padding-left: 25px;
-    font-size: 15px;
-    line-height: 1.4;
+    font-size: 14px;
+    line-height: 1.3;
     color: #f0f0f0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .package-services-list li:last-child {
@@ -172,31 +187,90 @@ include('contact_info.php');
     left: 0;
     color: #F59E0B;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 14px;
+}
+
+/* Alternative compact layout for many services */
+.package-services-list.compact {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 4px;
+}
+
+.package-services-list.compact li {
+    padding: 4px 0 4px 18px;
+    font-size: 13px;
+    border-bottom: none;
+}
+
+.package-services-list.compact li::before {
+    font-size: 12px;
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 968px) {
     .package-service-box {
-        padding: 20px;
-        margin: 15px 0;
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 18px;
+    }
+    
+    .package-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
     }
     
     .package-title {
-        font-size: 22px;
+        font-size: 24px;
     }
     
     .package-subtitle {
-        font-size: 16px;
+        font-size: 15px;
     }
     
     .package-description {
+        padding-right: 0;
         font-size: 14px;
     }
     
-    .package-includes {
-        padding: 15px;
+    .package-services-list {
+        grid-template-columns: 1fr;
     }
+}
+
+@media (max-width: 576px) {
+    .package-service-box {
+        padding: 15px;
+        margin: 10px 0;
+    }
+    
+    .package-title {
+        font-size: 20px;
+    }
+    
+    .package-subtitle {
+        font-size: 14px;
+    }
+    
+    .package-description {
+        font-size: 13px;
+    }
+    
+    .package-includes {
+        padding: 12px;
+    }
+}
+
+/* For packages with many services, add this class to the PHP */
+.package-service-box.many-services .package-services-list {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 3px;
+}
+
+.package-service-box.many-services .package-services-list li {
+    padding: 3px 0 3px 16px;
+    font-size: 12px;
+    line-height: 1.2;
 }
 
 /* Add-on Services Styling - Package Design */

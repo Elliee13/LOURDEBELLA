@@ -25,7 +25,7 @@
         .card-header {
             gap: 16px;
             display: flex;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #f59e0b 100%);
             color: white;
             padding: 32px;
             border: none;
@@ -154,8 +154,9 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background:rgb(245, 159, 11);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(245, 159, 11, 0.4);
         }
 
         .btn-primary:hover {
